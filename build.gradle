@@ -18,9 +18,11 @@ base {
 	archivesName = rootProject.name
 }
 
-processResources {
-	inputs.property "version", project.version
+remapJar {
+	archiveFileName = "${rootProject.name}-${version}+mc${minecraft_version}.jar"
+}
 
+processResources {
 	filesMatching("fabric.mod.json") {
 		expand "id": rootProject.name, "version": project.version
 	}
