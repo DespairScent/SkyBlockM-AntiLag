@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+
+  "name": "SkyBlockM AntiLag",
+  "description": "Remove lags on \"heavy\" islands",
+  "authors": ["DespairScent"],
+
+  "license": "MIT",
+
+  "environment": "client",
+
+  "entrypoints": {
+    "client": [
+      "despairscent.skyblockm.antilag.ModLoader"
+    ]
+  },
+  "mixins": [
+    "skyblockm-antilag.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.19",
+    "fabric-api": "*",
+    "minecraft": "~1.19.4",
+    "java": ">=17"
+  }
+}

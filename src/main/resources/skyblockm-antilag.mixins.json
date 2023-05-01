@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "despairscent.skyblockm.antilag.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [],
+  "client": [
+    "ArmorStandMixin",
+    "ItemRendererMixin",
+    "ResourceReloadMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
