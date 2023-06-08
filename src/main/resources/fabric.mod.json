@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "SkyBlockM Tweaks",
-  "description": "Улучшает игровой опыт на сервере SkyBlockM\n\nДля настройки необходим Cloth Config API",
+  "description": "Улучшает игровой опыт на сервере SkyBlockM",
   "authors": ["DespairScent"],
 
   "license": "MIT",

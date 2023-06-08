@@ -17,5 +17,8 @@
   "skyblockm-tweaks.keys": "SkyBlockM Tweaks",
   "skyblockm-tweaks.keys.optimize": "Переключить оптимизацию",
 
-  "skyblockm-tweaks.interact.optimizeswitch": "Оптимизации SkyBlockM: "
+  "skyblockm-tweaks.interact.optimizeswitch": "Оптимизации SkyBlockM: ",
+
+  "modmenu.summaryTranslation.skyblockm-tweaks": "Улучшает игровой опыт на сервере SkyBlockM",
+  "modmenu.descriptionTranslation.skyblockm-tweaks": "Улучшает игровой опыт на сервере SkyBlockM посредством различных оптимизаций и QoL-фич\n\nДля настройки необходим Cloth Config API"
 }
