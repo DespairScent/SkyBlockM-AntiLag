@@ -4,9 +4,13 @@
   "version": "${version}",
 
   "name": "SkyBlockM Tweaks",
-  "description": "Улучшает игровой опыт на сервере SkyBlockM\n\nДля настройки необходим Cloth Config API",
+  "description": "Улучшает игровой опыт на сервере SkyBlockM",
   "authors": ["DespairScent"],
-
+  "contact": {
+    "homepage": "https://github.com/DespairScent/SkyBlockM-Tweaks",
+    "sources": "https://github.com/DespairScent/SkyBlockM-Tweaks",
+    "issues": "https://github.com/DespairScent/SkyBlockM-Tweaks/issues"
+  },
   "license": "MIT",
 
   "environment": "client",
