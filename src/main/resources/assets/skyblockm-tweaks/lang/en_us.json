@@ -11,6 +11,7 @@
 
   "skyblockm-tweaks.config.qol": "QoL-улучшения",
   "skyblockm-tweaks.config.qol.storagetargetingfix": "Исправление наведения на хранилище",
+  "skyblockm-tweaks.config.qol.storageframesfix": "Исправление видимых рамок при обновлении числа",
   "skyblockm-tweaks.config.qol.moretooltipinfo": "Больше данных во всплывающем тексте",
   "skyblockm-tweaks.config.qol.moretooltipinfo.desc": "Для хранилищ: показ предмета внутри",
 

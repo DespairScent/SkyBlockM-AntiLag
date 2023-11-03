@@ -31,6 +31,7 @@ public class Config {
 
     public static class QoL {
         public boolean storageTargetingFix = true;
+        public boolean storageFramesFix = true;
         public boolean moreTooltipInfo = true;
     }
 
