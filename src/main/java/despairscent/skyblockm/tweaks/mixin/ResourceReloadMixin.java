@@ -15,10 +15,11 @@ public abstract class ResourceReloadMixin {
 
     @Inject(
             method = "reloadResources()Ljava/util/concurrent/CompletableFuture;",
-            at = @At("TAIL")
+            at = @At("RETURN"),
+            cancellable = true
     )
     private void reloadInject(CallbackInfoReturnable<CompletableFuture<Void>> cir) {
-        modelsCache.clear();
+        cir.setReturnValue(cir.getReturnValue().thenRun(() -> modelsCache.clear()));
     }
 
 }
