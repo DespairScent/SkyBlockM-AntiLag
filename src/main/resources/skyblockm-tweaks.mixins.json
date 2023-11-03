@@ -9,7 +9,6 @@
     "EntityMixin",
     "GameRendererMixin",
     "InGameHudMixin",
-    "ItemFrameUpdateMixin",
     "ItemRendererMixin",
     "ResourceReloadMixin"
   ],
