@@ -6,6 +6,7 @@ import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,7 +26,11 @@ public abstract class GameRendererMixin {
     )
     private EntityHitResult injected(Entity entity, Vec3d min, Vec3d max, Box box, Predicate<Entity> predicate, double d) {
         if (config.qol.storageTargetingFix) {
-            return ProjectileUtil.raycast(entity, min, max, box, e -> !(e instanceof ItemFrameEntity && e.isInvisible()) && predicate.test(e), d);
+            return ProjectileUtil.raycast(entity, min, max, box, e ->
+                    !(e instanceof ItemFrameEntity itemFrame &&
+                            itemFrame.getHorizontalFacing() == Direction.DOWN && itemFrame.isInvisible() &&
+                            !(itemFrame.getYaw() == 0 && itemFrame.getPitch() == 90)
+                    ) && predicate.test(e), d);
         }
         return ProjectileUtil.raycast(entity, min, max, box, predicate, d);
     }
