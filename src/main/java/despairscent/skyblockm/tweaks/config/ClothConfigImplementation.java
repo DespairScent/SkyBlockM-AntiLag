@@ -42,6 +42,10 @@ public class ClothConfigImplementation {
                         .setTooltip(translatableSelf("config.qol.moretooltipinfo.desc"))
                         .setDefaultValue(Config.DEFAULT.qol.moreTooltipInfo)
                         .setSaveConsumer(value -> config.qol.moreTooltipInfo = value)
+                        .build())
+                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.qol.recipessearchinputlagfix"), config.qol.recipesSearchInputLagFix)
+                        .setDefaultValue(Config.DEFAULT.qol.recipesSearchInputLagFix)
+                        .setSaveConsumer(value -> config.qol.recipesSearchInputLagFix = value)
                         .build());
 
         builder.setSavingRunnable(() -> config.save());
