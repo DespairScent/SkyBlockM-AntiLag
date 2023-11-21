@@ -3,6 +3,7 @@ package despairscent.skyblockm.tweaks;
 import despairscent.skyblockm.tweaks.config.Config;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.item.Item;
 import net.minecraft.text.LiteralTextContent;
@@ -28,8 +29,8 @@ public class ModUtils {
         return Text.translatable("skyblockm-tweaks." + key, args);
     }
 
-    public static boolean testCustomScreen(Text title, String namespace, String code) {
-        List<Text> siblings = title.getSiblings();
+    public static boolean testCustomScreen(Screen screen, String namespace, String code) {
+        List<Text> siblings = screen.getTitle().getSiblings();
         if (siblings.isEmpty()) {
             return false;
         }

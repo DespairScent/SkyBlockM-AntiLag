@@ -14,6 +14,7 @@
   "skyblockm-tweaks.config.qol.moretooltipinfo": "Больше данных во всплывающем тексте",
   "skyblockm-tweaks.config.qol.moretooltipinfo.desc": "Для хранилищ: показ предмета внутри",
   "skyblockm-tweaks.config.qol.recipessearchinputlagfix": "Исправление лагов ввода при поиске по рецептам",
+  "skyblockm-tweaks.config.qol.esTerminalSearchInputLagFix": "Исправление лагов ввода при поиске в ES-терминале",
 
   "skyblockm-tweaks.keys": "SkyBlockM Tweaks",
   "skyblockm-tweaks.keys.optimize": "Переключить оптимизацию",

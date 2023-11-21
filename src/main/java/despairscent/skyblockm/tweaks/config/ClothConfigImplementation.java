@@ -46,6 +46,10 @@ public class ClothConfigImplementation {
                 .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.qol.recipessearchinputlagfix"), config.qol.recipesSearchInputLagFix)
                         .setDefaultValue(Config.DEFAULT.qol.recipesSearchInputLagFix)
                         .setSaveConsumer(value -> config.qol.recipesSearchInputLagFix = value)
+                        .build())
+                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.qol.esTerminalSearchInputLagFix"), config.qol.esTerminalSearchInputLagFix)
+                        .setDefaultValue(Config.DEFAULT.qol.esTerminalSearchInputLagFix)
+                        .setSaveConsumer(value -> config.qol.esTerminalSearchInputLagFix = value)
                         .build());
 
         builder.setSavingRunnable(() -> config.save());

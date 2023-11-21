@@ -33,6 +33,7 @@ public class Config {
         public boolean storageTargetingFix = true;
         public boolean moreTooltipInfo = true;
         public boolean recipesSearchInputLagFix = true;
+        public boolean esTerminalSearchInputLagFix = true;
     }
 
     public static Config load() {
