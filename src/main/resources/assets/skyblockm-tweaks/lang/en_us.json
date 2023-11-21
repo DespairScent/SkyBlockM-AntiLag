@@ -5,21 +5,21 @@
   "skyblockm-tweaks.config.general.optimize": "Включить оптимизации",
 
   "skyblockm-tweaks.config.optimize": "Модули оптимизации",
-  "skyblockm-tweaks.config.optimize.armorstandcramming": "ArmorStandCramming",
-  "skyblockm-tweaks.config.optimize.modelscaching": "ModelsCaching",
-  "skyblockm-tweaks.config.optimize.spectatorarmorstands": "SpectatorArmorStands",
+  "skyblockm-tweaks.config.optimize.armorStandCramming": "ArmorStandCramming",
+  "skyblockm-tweaks.config.optimize.modelsCaching": "ModelsCaching",
+  "skyblockm-tweaks.config.optimize.spectatorArmorStands": "SpectatorArmorStands",
 
   "skyblockm-tweaks.config.qol": "QoL-улучшения",
-  "skyblockm-tweaks.config.qol.storagetargetingfix": "Исправление наведения на хранилище",
-  "skyblockm-tweaks.config.qol.moretooltipinfo": "Больше данных во всплывающем тексте",
-  "skyblockm-tweaks.config.qol.moretooltipinfo.desc": "Для хранилищ: показ предмета внутри",
-  "skyblockm-tweaks.config.qol.recipessearchinputlagfix": "Исправление лагов ввода при поиске по рецептам",
+  "skyblockm-tweaks.config.qol.storageTargetingFix": "Исправление наведения на хранилище",
+  "skyblockm-tweaks.config.qol.moreTooltipInfo": "Больше данных во всплывающем тексте",
+  "skyblockm-tweaks.config.qol.moreTooltipInfo.desc": "Для хранилищ: показ предмета внутри",
+  "skyblockm-tweaks.config.qol.recipesSearchInputLagFix": "Исправление лагов ввода при поиске по рецептам",
   "skyblockm-tweaks.config.qol.esTerminalSearchInputLagFix": "Исправление лагов ввода при поиске в ES-терминале",
 
   "skyblockm-tweaks.keys": "SkyBlockM Tweaks",
   "skyblockm-tweaks.keys.optimize": "Переключить оптимизацию",
 
-  "skyblockm-tweaks.interact.optimizeswitch": "Оптимизации SkyBlockM: ",
+  "skyblockm-tweaks.message.optimizeSwitch": "Оптимизации SkyBlockM: ",
 
   "modmenu.summaryTranslation.skyblockm-tweaks": "Улучшает игровой опыт на сервере SkyBlockM",
   "modmenu.descriptionTranslation.skyblockm-tweaks": "Улучшает игровой опыт на сервере SkyBlockM посредством различных оптимизаций и QoL-фич\nДля настройки необходим Cloth Config API"

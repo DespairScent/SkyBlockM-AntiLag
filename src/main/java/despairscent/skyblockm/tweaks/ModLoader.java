@@ -37,7 +37,7 @@ public class ModLoader implements ClientModInitializer {
         }
         config.general.optimize = !config.general.optimize;
         modelsCache.clear();
-        client.inGameHud.getChatHud().addMessage(translatableSelf("interact.optimizeswitch").append(
+        client.inGameHud.getChatHud().addMessage(translatableSelf("message.optimizeSwitch").append(
                 config.general.optimize ?
                         Text.literal("on").styled(style -> style.withColor(Formatting.GREEN)) :
                         Text.literal("off").styled(style -> style.withColor(Formatting.RED))));
