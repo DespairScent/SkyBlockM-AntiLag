@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "${id}",
+  "id": "skyblockm-tweaks",
   "version": "${version}",
 
   "name": "SkyBlockM Tweaks",
