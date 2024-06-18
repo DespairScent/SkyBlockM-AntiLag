@@ -1,60 +1,116 @@
 package despairscent.skyblockm.tweaks.config;
 
+import me.shedaniel.clothconfig2.api.AbstractConfigListEntry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
+import me.shedaniel.clothconfig2.api.ConfigCategory;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.text.Text;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
 
 import static despairscent.skyblockm.tweaks.ModUtils.config;
-import static despairscent.skyblockm.tweaks.ModUtils.translatableSelf;
+import static despairscent.skyblockm.tweaks.ModUtils.i18n;
 
 public class ClothConfigImplementation {
 
     static Screen generate(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(translatableSelf("config.title"));
+                .setTitle(i18n("config.title"));
+        ConfigCategory base = builder.getOrCreateCategory(Text.empty());
 
-        builder.getOrCreateCategory(translatableSelf("config.general"))
-                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.general.optimize"), config.general.optimize)
-                        .setDefaultValue(Config.DEFAULT.general.optimize)
-                        .setSaveConsumer(value -> config.general.optimize = value)
+        base.addEntry(builder.entryBuilder().startBooleanToggle(i18n("config.modules.fpsOptimize"), config.modules.fpsOptimize)
+                        .setDefaultValue(Config.DEFAULT.modules.fpsOptimize)
+                        .setSaveConsumer(value -> config.modules.fpsOptimize = value)
                         .build());
+        base.addEntry(builder.entryBuilder().startSubCategory(i18n("config.subcategory"), Arrays.asList(
+                builder.entryBuilder().startBooleanToggle(i18n("config.fpsOptimize.modelsCaching"), config.fpsOptimize.modelsCaching)
+                        .setDefaultValue(Config.DEFAULT.fpsOptimize.modelsCaching)
+                        .setSaveConsumer(value -> config.fpsOptimize.modelsCaching = value)
+                        .build(),
+                builder.entryBuilder().startBooleanToggle(i18n("config.fpsOptimize.noArmorStandCramming"), config.fpsOptimize.noArmorStandCramming)
+                        .setDefaultValue(Config.DEFAULT.fpsOptimize.noArmorStandCramming)
+                        .setSaveConsumer(value -> config.fpsOptimize.noArmorStandCramming = value)
+                        .build(),
+                builder.entryBuilder().startBooleanToggle(i18n("config.fpsOptimize.noSpectatorArmorStands"), config.fpsOptimize.noSpectatorArmorStands)
+                        .setDefaultValue(Config.DEFAULT.fpsOptimize.noSpectatorArmorStands)
+                        .setSaveConsumer(value -> config.fpsOptimize.noSpectatorArmorStands = value)
+                        .build()
+        )).build());
 
-        builder.getOrCreateCategory(translatableSelf("config.optimize"))
-                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.optimize.armorStandCramming"), config.optimize.armorStandCramming)
-                        .setDefaultValue(Config.DEFAULT.optimize.armorStandCramming)
-                        .setSaveConsumer(value -> config.optimize.armorStandCramming = value)
-                        .build())
-                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.optimize.modelsCaching"), config.optimize.modelsCaching)
-                        .setDefaultValue(Config.DEFAULT.optimize.modelsCaching)
-                        .setSaveConsumer(value -> config.optimize.modelsCaching = value)
-                        .build())
-                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.optimize.spectatorArmorStands"), config.optimize.spectatorArmorStands)
-                        .setDefaultValue(Config.DEFAULT.optimize.spectatorArmorStands)
-                        .setSaveConsumer(value -> config.optimize.spectatorArmorStands = value)
-                        .build());
+        base.addEntry(builder.entryBuilder().startBooleanToggle(i18n("config.modules.storageTargetingFix"), config.modules.storageTargetingFix)
+                .setTooltip(i18n("config.modules.storageTargetingFix.tooltip"))
+                .setDefaultValue(Config.DEFAULT.modules.storageTargetingFix)
+                .setSaveConsumer(value -> config.modules.storageTargetingFix = value)
+                .build());
 
-        builder.getOrCreateCategory(translatableSelf("config.qol"))
-                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.qol.storageTargetingFix"), config.qol.storageTargetingFix)
-                        .setDefaultValue(Config.DEFAULT.qol.storageTargetingFix)
-                        .setSaveConsumer(value -> config.qol.storageTargetingFix = value)
-                        .build())
-                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.qol.moreTooltipInfo"), config.qol.moreTooltipInfo)
-                        .setTooltip(translatableSelf("config.qol.moreTooltipInfo.desc"))
-                        .setDefaultValue(Config.DEFAULT.qol.moreTooltipInfo)
-                        .setSaveConsumer(value -> config.qol.moreTooltipInfo = value)
-                        .build())
-                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.qol.recipesSearchInputLagFix"), config.qol.recipesSearchInputLagFix)
-                        .setDefaultValue(Config.DEFAULT.qol.recipesSearchInputLagFix)
-                        .setSaveConsumer(value -> config.qol.recipesSearchInputLagFix = value)
-                        .build())
-                .addEntry(builder.entryBuilder().startBooleanToggle(translatableSelf("config.qol.esTerminalSearchInputLagFix"), config.qol.esTerminalSearchInputLagFix)
-                        .setDefaultValue(Config.DEFAULT.qol.esTerminalSearchInputLagFix)
-                        .setSaveConsumer(value -> config.qol.esTerminalSearchInputLagFix = value)
-                        .build());
+        base.addEntry(builder.entryBuilder().startBooleanToggle(i18n("config.modules.moreTooltipInfo"), config.modules.moreTooltipInfo)
+                .setTooltip(i18n("config.modules.moreTooltipInfo.tooltip"))
+                .setDefaultValue(Config.DEFAULT.modules.moreTooltipInfo)
+                .setSaveConsumer(value -> config.modules.moreTooltipInfo = value)
+                .build());
+        base.addEntry(builder.entryBuilder().startSubCategory(i18n("config.subcategory"), Arrays.asList(
+                builder.entryBuilder().startBooleanToggle(i18n("config.moreTooltipInfo.storage"), config.moreTooltipInfo.storage)
+                        .setTooltip(i18n("config.moreTooltipInfo.storage.tooltip"))
+                        .setDefaultValue(Config.DEFAULT.moreTooltipInfo.storage)
+                        .setSaveConsumer(value -> config.moreTooltipInfo.storage = value)
+                        .build(),
+                builder.entryBuilder().startBooleanToggle(i18n("config.moreTooltipInfo.crystalMemory"), config.moreTooltipInfo.crystalMemory)
+                        .setTooltip(i18n("config.moreTooltipInfo.crystalMemory.tooltip"))
+                        .setDefaultValue(Config.DEFAULT.moreTooltipInfo.crystalMemory)
+                        .setSaveConsumer(value -> config.moreTooltipInfo.crystalMemory = value)
+                        .build()
+        )).build());
+
+        base.addEntry(builder.entryBuilder().startBooleanToggle(i18n("config.modules.renderItemInside"), config.modules.renderItemInside)
+                .setTooltip(i18n("config.modules.renderItemInside.tooltip"))
+                .setDefaultValue(Config.DEFAULT.modules.renderItemInside)
+                .setSaveConsumer(value -> config.modules.renderItemInside = value)
+                .build());
+        base.addEntry(builder.entryBuilder().startSubCategory(i18n("config.subcategory"), Arrays.asList(
+                builder.entryBuilder().startSubCategory(i18n("config.renderItemInside.item.esPattern"),
+                        prepareRenderItemInsideSetup(builder, config -> config.renderItemInside.esPattern)).build(),
+                builder.entryBuilder().startSubCategory(i18n("config.renderItemInside.item.storage"),
+                        prepareRenderItemInsideSetup(builder, config -> config.renderItemInside.storage)).build()
+        )).build());
+
+        base.addEntry(builder.entryBuilder().startBooleanToggle(i18n("config.modules.inputLagFix"), config.modules.inputLagFix)
+                .setDefaultValue(Config.DEFAULT.modules.inputLagFix)
+                .setSaveConsumer(value -> config.modules.inputLagFix = value)
+                .build());
+        base.addEntry(builder.entryBuilder().startSubCategory(i18n("config.subcategory"), Arrays.asList(
+                builder.entryBuilder().startBooleanToggle(i18n("config.inputLagFix.recipesSearch"), config.inputLagFix.recipesSearch)
+                        .setDefaultValue(Config.DEFAULT.inputLagFix.recipesSearch)
+                        .setSaveConsumer(value -> config.inputLagFix.recipesSearch = value)
+                        .build(),
+                builder.entryBuilder().startBooleanToggle(i18n("config.inputLagFix.esTerminalSearch"), config.inputLagFix.esTerminalSearch)
+                        .setDefaultValue(Config.DEFAULT.inputLagFix.esTerminalSearch)
+                        .setSaveConsumer(value -> config.inputLagFix.esTerminalSearch = value)
+                        .build()
+        )).build());
 
         builder.setSavingRunnable(() -> config.save());
 
         return builder.build();
+    }
+
+    private static List<AbstractConfigListEntry> prepareRenderItemInsideSetup(ConfigBuilder builder, Function<Config, Config.RenderItemInsideSub> subGetter) {
+        return Arrays.asList(
+                builder.entryBuilder().startBooleanToggle(i18n("config.renderItemInside.enabled"), subGetter.apply(config).enabled)
+                        .setDefaultValue(subGetter.apply(Config.DEFAULT).enabled)
+                        .setSaveConsumer(value -> subGetter.apply(config).enabled = value)
+                        .build(),
+                builder.entryBuilder().startBooleanToggle(i18n("config.renderItemInside.renderAlways"), subGetter.apply(config).renderAlways)
+                        .setDefaultValue(subGetter.apply(Config.DEFAULT).renderAlways)
+                        .setSaveConsumer(value -> subGetter.apply(config).renderAlways = value)
+                        .build(),
+                builder.entryBuilder().startBooleanToggle(i18n("config.renderItemInside.drawOriginal"), subGetter.apply(config).drawOriginal)
+                        .setDefaultValue(subGetter.apply(Config.DEFAULT).drawOriginal)
+                        .setSaveConsumer(value -> subGetter.apply(config).drawOriginal = value)
+                        .build()
+        );
     }
 
 }

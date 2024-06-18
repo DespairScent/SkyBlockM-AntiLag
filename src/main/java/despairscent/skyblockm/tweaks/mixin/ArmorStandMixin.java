@@ -13,8 +13,8 @@ import static despairscent.skyblockm.tweaks.ModUtils.config;
 public abstract class ArmorStandMixin {
 
 	@Inject(method = "tickCramming()V", at = @At("HEAD"), cancellable = true)
-	private void injected(CallbackInfo ci) {
-		if (config.general.optimize && config.optimize.armorStandCramming &&
+	private void tickCrammingInject(CallbackInfo ci) {
+		if (config.modules.fpsOptimize && config.fpsOptimize.noArmorStandCramming &&
 				MinecraftClient.getInstance().world != null && MinecraftClient.getInstance().world.isClient()) {
 			ci.cancel();
 		}

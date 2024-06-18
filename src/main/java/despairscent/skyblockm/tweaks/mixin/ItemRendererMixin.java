@@ -5,6 +5,7 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,9 +22,9 @@ public abstract class ItemRendererMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/render/item/ItemRenderer;getModel(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;I)Lnet/minecraft/client/render/model/BakedModel;"))
-    private BakedModel replaceGetModel(ItemRenderer instance, ItemStack stack, World world, LivingEntity entity, int seed) {
-        if (config.general.optimize && config.optimize.modelsCaching &&
-                stack.hasNbt() && stack.getNbt().contains("CustomModelData")) {
+    private BakedModel renderItemModelRedirect(ItemRenderer instance, ItemStack stack, World world, LivingEntity entity, int seed) {
+        if (config.modules.fpsOptimize && config.fpsOptimize.modelsCaching &&
+                stack.hasNbt() && stack.getNbt().getType("CustomModelData") == NbtElement.INT_TYPE) {
             int modelId = stack.getNbt().getInt("CustomModelData");
             return modelsCache
                     .computeIfAbsent(stack.getItem(), k -> new Int2ObjectOpenHashMap<>())

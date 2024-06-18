@@ -6,6 +6,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.LiteralTextContent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -25,7 +27,7 @@ public class ModUtils {
 
     public static Map<Item, Int2ObjectMap<BakedModel>> modelsCache = new HashMap<>();
 
-    public static MutableText translatableSelf(String key, Object... args) {
+    public static MutableText i18n(String key, Object... args) {
         return Text.translatable("skyblockm-tweaks." + key, args);
     }
 
@@ -38,6 +40,13 @@ public class ModUtils {
         return child.getContent() instanceof LiteralTextContent literal &&
                 child.getStyle().getFont().toString().equals(namespace) &&
                 literal.string().equals(code);
+    }
+
+    public static int getCustomModelId(ItemStack itemStack) {
+        if (itemStack.hasNbt() && itemStack.getNbt().getType("CustomModelData") == NbtElement.INT_TYPE) {
+            return itemStack.getNbt().getInt("CustomModelData");
+        }
+        return -1;
     }
 
 }

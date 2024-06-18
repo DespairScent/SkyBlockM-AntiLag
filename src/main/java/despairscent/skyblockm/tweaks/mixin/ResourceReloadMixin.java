@@ -18,7 +18,7 @@ public abstract class ResourceReloadMixin {
             at = @At("RETURN"),
             cancellable = true
     )
-    private void reloadInject(CallbackInfoReturnable<CompletableFuture<Void>> cir) {
+    private void reloadResourcesInject(CallbackInfoReturnable<CompletableFuture<Void>> cir) {
         cir.setReturnValue(cir.getReturnValue().thenRun(() -> modelsCache.clear()));
     }
 

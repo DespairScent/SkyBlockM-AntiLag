@@ -18,7 +18,7 @@ public abstract class EntityMixin {
 					target = "Lnet/minecraft/entity/player/PlayerEntity;isSpectator()Z")
 	)
 	private boolean isInvisibleToInject(PlayerEntity instance) {
-		if (config.general.optimize && config.optimize.spectatorArmorStands &&
+		if (config.modules.fpsOptimize && config.fpsOptimize.noSpectatorArmorStands &&
 				((Object)this) instanceof ArmorStandEntity) {
 			return false;
 		}

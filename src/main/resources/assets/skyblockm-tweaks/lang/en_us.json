@@ -1,20 +1,36 @@
 {
   "skyblockm-tweaks.config.title": "SkyBlockM Tweaks",
 
-  "skyblockm-tweaks.config.general": "Общие",
-  "skyblockm-tweaks.config.general.optimize": "Включить оптимизации",
+  "skyblockm-tweaks.config.subcategory": "  [Расширенная настройка]",
 
-  "skyblockm-tweaks.config.optimize": "Модули оптимизации",
-  "skyblockm-tweaks.config.optimize.armorStandCramming": "ArmorStandCramming",
-  "skyblockm-tweaks.config.optimize.modelsCaching": "ModelsCaching",
-  "skyblockm-tweaks.config.optimize.spectatorArmorStands": "SpectatorArmorStands",
+  "skyblockm-tweaks.config.modules": "Модули",
+  "skyblockm-tweaks.config.modules.fpsOptimize": "Оптимизации FPS",
+  "skyblockm-tweaks.config.modules.storageTargetingFix": "Исправление наведения на хранилище",
+  "skyblockm-tweaks.config.modules.storageTargetingFix.tooltip": "В некоторых случаях, без исправления, клики не проходят (например с ключом в руке)",
+  "skyblockm-tweaks.config.modules.moreTooltipInfo": "Подробности во всплывающей подсказке предмета",
+  "skyblockm-tweaks.config.modules.moreTooltipInfo.tooltip": "Всплывающая подсказка - та, что появляется при смене слота в хотбара",
+  "skyblockm-tweaks.config.modules.renderItemInside": "Рендер внутреннего предмета",
+  "skyblockm-tweaks.config.modules.renderItemInside.tooltip": "Например, показ цели ES шаблона при зажатом Shift (по умолчанию)",
+  "skyblockm-tweaks.config.modules.inputLagFix": "Исправление лагов ввода текста в кастомных интерфейсах",
 
-  "skyblockm-tweaks.config.qol": "QoL-улучшения",
-  "skyblockm-tweaks.config.qol.storageTargetingFix": "Исправление наведения на хранилище",
-  "skyblockm-tweaks.config.qol.moreTooltipInfo": "Больше данных во всплывающем тексте",
-  "skyblockm-tweaks.config.qol.moreTooltipInfo.desc": "Для хранилищ: показ предмета внутри",
-  "skyblockm-tweaks.config.qol.recipesSearchInputLagFix": "Исправление лагов ввода при поиске по рецептам",
-  "skyblockm-tweaks.config.qol.esTerminalSearchInputLagFix": "Исправление лагов ввода при поиске в ES-терминале",
+  "skyblockm-tweaks.config.fpsOptimize.modelsCaching": "Кеширование моделей кастомных предметов/блоков",
+  "skyblockm-tweaks.config.fpsOptimize.noArmorStandCramming": "Отключение проверок «тесноты» для стоек",
+  "skyblockm-tweaks.config.fpsOptimize.noSpectatorArmorStands": "[ADMIN] Скрытие стоек в режиме наблюдения",
+
+  "skyblockm-tweaks.config.moreTooltipInfo.storage": "Хранилище",
+  "skyblockm-tweaks.config.moreTooltipInfo.storage.tooltip": "Показ предмета внутри",
+  "skyblockm-tweaks.config.moreTooltipInfo.crystalMemory": "Кристалл памяти",
+  "skyblockm-tweaks.config.moreTooltipInfo.crystalMemory.tooltip": "Показ записанного предмета",
+
+  "skyblockm-tweaks.config.renderItemInside.item.esPattern": "ES шаблон создания",
+  "skyblockm-tweaks.config.renderItemInside.item.storage": "Хранилище",
+
+  "skyblockm-tweaks.config.renderItemInside.enabled": "Включено",
+  "skyblockm-tweaks.config.renderItemInside.renderAlways": "Показывать всегда (без Shift)",
+  "skyblockm-tweaks.config.renderItemInside.drawOriginal": "Иконка изначального предмета",
+
+  "skyblockm-tweaks.config.inputLagFix.recipesSearch": "При поиске по рецептам",
+  "skyblockm-tweaks.config.inputLagFix.esTerminalSearch": "При поиске в ES-терминале",
 
   "skyblockm-tweaks.keys": "SkyBlockM Tweaks",
   "skyblockm-tweaks.keys.optimize": "Переключить оптимизацию",

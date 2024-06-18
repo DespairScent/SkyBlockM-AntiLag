@@ -1,5 +1,6 @@
 package despairscent.skyblockm.tweaks.mixin;
 
+import despairscent.skyblockm.tweaks.ModUtils;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -36,42 +37,57 @@ public class InGameHudMixin {
     }
 
     private static Text getExtendedName(ItemStack itemStack) {
-        if (config.qol.moreTooltipInfo) {
-            if (itemStack.hasNbt() && itemStack.getNbt().getType("CustomModelData") == NbtElement.INT_TYPE) {
-                int modelId = itemStack.getNbt().getInt("CustomModelData");
-                if (itemStack.getItem() == Items.BARRIER && modelId >= 1010 && modelId <= 1013) { // storage
-                    NbtCompound nbtDisplay = itemStack.getSubNbt(ItemStack.DISPLAY_KEY);
-                    if (nbtDisplay != null) {
-                        NbtList lore = nbtDisplay.getList(ItemStack.LORE_KEY, NbtElement.STRING_TYPE);
-                        if (lore.size() == 4) {
-                            try {
-                                Text itemStr = Text.Serializer.fromJson(lore.getString(3));
-                                return Text.empty().append(itemStack.getName())
-                                        .append(Text.literal(" <").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)))
-                                        .append(itemStr)
-                                        .append(Text.literal(">").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)));
-                            } catch (Exception e) {
-                            }
-                        }
-                    }
-                } else if (itemStack.getItem() == Items.IRON_HORSE_ARMOR && modelId == 2001) { // memory crystal
-                    NbtCompound nbtDisplay = itemStack.getSubNbt(ItemStack.DISPLAY_KEY);
-                    if (nbtDisplay != null) {
-                        NbtList lore = nbtDisplay.getList(ItemStack.LORE_KEY, NbtElement.STRING_TYPE);
-                        if (lore.size() == 3) {
-                            try {
-                                Text itemStr = Text.Serializer.fromJson(lore.getString(0));
-                                return Text.empty().append(itemStack.getName())
-                                        .append(Text.literal(" <").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)))
-                                        .append(itemStr.getSiblings().get(1))
-                                        .append(Text.literal(">").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)));
-                            } catch (Exception e) {
-                            }
-                        }
-                    }
-                }
+        if (!config.modules.moreTooltipInfo) {
+            return itemStack.getName();
+        }
+
+        int modelId = ModUtils.getCustomModelId(itemStack);
+        if (itemStack.getItem() == Items.BARRIER && modelId >= 1010 && modelId <= 1013) { // storage
+            if (!config.moreTooltipInfo.storage) {
+                return itemStack.getName();
+            }
+
+            NbtCompound nbtDisplay = itemStack.getSubNbt(ItemStack.DISPLAY_KEY);
+            if (nbtDisplay == null) {
+                return itemStack.getName();
+            }
+            NbtList lore = nbtDisplay.getList(ItemStack.LORE_KEY, NbtElement.STRING_TYPE);
+            if (lore.size() != 4) {
+                return itemStack.getName();
+            }
+
+            try {
+                Text itemStr = Text.Serializer.fromJson(lore.getString(3));
+                return Text.empty().append(itemStack.getName())
+                        .append(Text.literal(" <").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)))
+                        .append(itemStr)
+                        .append(Text.literal(">").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)));
+            } catch (Exception e) {
+            }
+        } else if (itemStack.getItem() == Items.IRON_HORSE_ARMOR && modelId == 2001) { // memory crystal
+            if (!config.moreTooltipInfo.crystalMemory) {
+                return itemStack.getName();
+            }
+
+            NbtCompound nbtDisplay = itemStack.getSubNbt(ItemStack.DISPLAY_KEY);
+            if (nbtDisplay == null) {
+                return itemStack.getName();
+            }
+            NbtList lore = nbtDisplay.getList(ItemStack.LORE_KEY, NbtElement.STRING_TYPE);
+            if (lore.size() == 3) {
+                return itemStack.getName();
+            }
+
+            try {
+                Text itemStr = Text.Serializer.fromJson(lore.getString(0));
+                return Text.empty().append(itemStack.getName())
+                        .append(Text.literal(" <").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)))
+                        .append(itemStr.getSiblings().get(1))
+                        .append(Text.literal(">").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)));
+            } catch (Exception e) {
             }
         }
+
         return itemStack.getName();
     }
 

@@ -15,25 +15,45 @@ public class Config {
 
     public static final Config DEFAULT = new Config();
 
-    public General general = new General();
-    public Optimize optimize = new Optimize();
-    public QoL qol = new QoL();
+    public Modules modules = new Modules();
+    public FpsOptimize fpsOptimize = new FpsOptimize();
+    public MoreTooltipInfo moreTooltipInfo = new MoreTooltipInfo();
+    public RenderItemInside renderItemInside = new RenderItemInside();
+    public InputLagFix inputLagFix = new InputLagFix();
 
-    public static class General {
-        public boolean optimize = true;
-    }
-
-    public static class Optimize {
-        public boolean armorStandCramming = true;
-        public boolean modelsCaching = true;
-        public boolean spectatorArmorStands = true;
-    }
-
-    public static class QoL {
+    public static class Modules {
+        public boolean fpsOptimize = true;
         public boolean storageTargetingFix = true;
         public boolean moreTooltipInfo = true;
-        public boolean recipesSearchInputLagFix = true;
-        public boolean esTerminalSearchInputLagFix = true;
+        public boolean renderItemInside = true;
+        public boolean inputLagFix = true;
+    }
+
+    public static class FpsOptimize {
+        public boolean modelsCaching = true;
+        public boolean noArmorStandCramming = true;
+        public boolean noSpectatorArmorStands = true;
+    }
+
+    public static class MoreTooltipInfo {
+        public boolean storage = true;
+        public boolean crystalMemory = true;
+    }
+
+    public static class RenderItemInside {
+        public RenderItemInsideSub esPattern = new RenderItemInsideSub();
+        public RenderItemInsideSub storage = new RenderItemInsideSub();
+    }
+
+    public static class RenderItemInsideSub {
+        public boolean enabled = true;
+        public boolean renderAlways = false;
+        public boolean drawOriginal = true;
+    }
+
+    public static class InputLagFix {
+        public boolean recipesSearch = true;
+        public boolean esTerminalSearch = true;
     }
 
     public static Config load() {
