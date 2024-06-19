@@ -36,7 +36,6 @@ public class ModLoader implements ClientModInitializer {
             return;
         }
         config.modules.fpsOptimize = !config.modules.fpsOptimize;
-        modelsCache.clear();
         client.inGameHud.getChatHud().addMessage(i18n("message.optimizeSwitch").append(
                 config.modules.fpsOptimize ?
                         Text.literal("on").styled(style -> style.withColor(Formatting.GREEN)) :

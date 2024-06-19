@@ -11,9 +11,8 @@
     "EntityMixin",
     "GameRendererMixin",
     "InGameHudMixin",
-    "ItemRendererMixin",
-    "MinecraftClientMixin",
-    "ResourceReloadMixin"
+    "ItemRenderOptimizeMixin",
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1
