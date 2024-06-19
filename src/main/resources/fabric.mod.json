@@ -37,5 +37,8 @@
   "recommends": {
     "modmenu": "*",
     "cloth-config2": "*"
+  },
+  "conflicts": {
+    "modernfix": "<5.11.1"
   }
 }
