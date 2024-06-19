@@ -57,7 +57,7 @@ public class InGameHudMixin {
             }
 
             try {
-                Text itemStr = Text.Serializer.fromJson(lore.getString(3));
+                Text itemStr = Text.Serialization.fromJson(lore.getString(3));
                 return Text.empty().append(itemStack.getName())
                         .append(Text.literal(" <").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)))
                         .append(itemStr)
@@ -79,7 +79,7 @@ public class InGameHudMixin {
             }
 
             try {
-                Text itemStr = Text.Serializer.fromJson(lore.getString(0));
+                Text itemStr = Text.Serialization.fromJson(lore.getString(0));
                 return Text.empty().append(itemStack.getName())
                         .append(Text.literal(" <").styled(style -> style.withColor(Formatting.WHITE).withItalic(false)))
                         .append(itemStr.getSiblings().get(1))

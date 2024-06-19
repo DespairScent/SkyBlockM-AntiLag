@@ -8,8 +8,8 @@ import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.text.LiteralTextContent;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.PlainTextContent;
 import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,9 +37,9 @@ public class ModUtils {
             return false;
         }
         Text child = siblings.get(0);
-        return child.getContent() instanceof LiteralTextContent literal &&
+        return child.getContent() instanceof PlainTextContent plainText &&
                 child.getStyle().getFont().toString().equals(namespace) &&
-                literal.string().equals(code);
+                plainText.string().equals(code);
     }
 
     public static int getCustomModelId(ItemStack itemStack) {
