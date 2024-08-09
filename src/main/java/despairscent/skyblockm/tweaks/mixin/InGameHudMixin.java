@@ -74,7 +74,7 @@ public class InGameHudMixin {
                 return itemStack.getName();
             }
             NbtList lore = nbtDisplay.getList(ItemStack.LORE_KEY, NbtElement.STRING_TYPE);
-            if (lore.size() == 3) {
+            if (lore.size() != 3) {
                 return itemStack.getName();
             }
 
