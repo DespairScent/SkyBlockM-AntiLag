@@ -43,6 +43,7 @@ public class Config {
     public static class RenderItemInside {
         public RenderItemInsideSub esPattern = new RenderItemInsideSub();
         public RenderItemInsideSub storage = new RenderItemInsideSub();
+        public RenderItemInsideSub crystalMemory = new RenderItemInsideSub();
     }
 
     public static class RenderItemInsideSub {

@@ -24,6 +24,7 @@
 
   "skyblockm-tweaks.config.renderItemInside.item.esPattern": "ES шаблон создания",
   "skyblockm-tweaks.config.renderItemInside.item.storage": "Хранилище",
+  "skyblockm-tweaks.config.renderItemInside.item.crystalMemory": "Кристалл памяти",
 
   "skyblockm-tweaks.config.renderItemInside.enabled": "Включено",
   "skyblockm-tweaks.config.renderItemInside.renderAlways": "Показывать всегда (без Shift)",

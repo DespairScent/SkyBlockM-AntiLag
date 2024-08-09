@@ -62,6 +62,16 @@ public class DrawContextMixin {
             }
             drawOriginal = config.renderItemInside.storage.drawOriginal;
             itemInside = ItemStack.fromNbt(itemStack.getNbt().getCompound("ItemStack"));
+        } else if (itemStack.getItem() == Items.IRON_HORSE_ARMOR && modelId == 2001) {
+            if (!itemStack.getNbt().contains("StoredItem") ||
+                    !testRender(config.renderItemInside.crystalMemory)) {
+                return;
+            }
+            drawOriginal = config.renderItemInside.crystalMemory.drawOriginal;
+            itemInside = itemStackFromIdentifier(itemStack.getNbt().getString("StoredItem"));
+            if (itemInside == null) {
+                return;
+            }
         } else {
             return;
         }
@@ -95,6 +105,51 @@ public class DrawContextMixin {
         return subConfig.enabled &&
                 (subConfig.renderAlways ||
                         (MinecraftClient.getInstance().currentScreen != null && Screen.hasShiftDown()));
+    }
+
+    private static ItemStack itemStackFromIdentifier(String identifierStr) {
+        Item item = Registries.ITEM.get(Identifier.tryParse(identifierStr));
+        if (item != Items.AIR) {
+            return new ItemStack(item);
+        }
+        int modelId;
+        switch (identifierStr) {
+            case "general:tin_ingot":
+                item = Items.PAPER;
+                modelId = 204;
+                break;
+            case "general:bronze_ingot":
+                item = Items.PAPER;
+                modelId = 304;
+                break;
+            case "general:steel_ingot":
+                item = Items.PAPER;
+                modelId = 1104;
+                break;
+            case "general:lead_ingot":
+                item = Items.PAPER;
+                modelId = 1004;
+                break;
+            case "electricity:iridium_shard":
+                item = Items.PAPER;
+                modelId = 4015;
+                break;
+            case "electricity:sunnarium_shard":
+                item = Items.PAPER;
+                modelId = 4019;
+                break;
+            case "electricity:silica":
+                item = Items.PAPER;
+                modelId = 4010;
+                break;
+            default:
+                return null;
+        }
+        NbtCompound nbt = new NbtCompound();
+        nbt.putInt("CustomModelData", modelId);
+        ItemStack stack = new ItemStack(item);
+        stack.setNbt(nbt);
+        return stack;
     }
 
 }
