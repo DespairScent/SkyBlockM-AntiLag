@@ -28,7 +28,8 @@
 
   "skyblockm-tweaks.config.renderItemInside.enabled": "Включено",
   "skyblockm-tweaks.config.renderItemInside.renderAlways": "Показывать всегда (без Shift)",
-  "skyblockm-tweaks.config.renderItemInside.drawOriginal": "Иконка изначального предмета",
+  "skyblockm-tweaks.config.renderItemInside.drawOriginal": "Иконка контейнера",
+  "skyblockm-tweaks.config.renderItemInside.bgColor": "Цвет фона",
 
   "skyblockm-tweaks.config.inputLagFix.recipesSearch": "При поиске по рецептам",
   "skyblockm-tweaks.config.inputLagFix.esTerminalSearch": "При поиске в ES-терминале",

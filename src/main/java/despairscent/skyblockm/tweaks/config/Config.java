@@ -41,15 +41,20 @@ public class Config {
     }
 
     public static class RenderItemInside {
-        public RenderItemInsideSub esPattern = new RenderItemInsideSub();
-        public RenderItemInsideSub storage = new RenderItemInsideSub();
-        public RenderItemInsideSub crystalMemory = new RenderItemInsideSub();
+        public RenderItemInsideSub esPattern = new RenderItemInsideSub(0xFF9D9DFF);
+        public RenderItemInsideSub storage = new RenderItemInsideSub(0xFFAEA78B);
+        public RenderItemInsideSub crystalMemory = new RenderItemInsideSub(0xFF4A4A4A);
     }
 
     public static class RenderItemInsideSub {
         public boolean enabled = true;
         public boolean renderAlways = false;
-        public boolean drawOriginal = true;
+        public boolean drawOriginal = true; // drawContainer
+        public int bgColor;
+
+        RenderItemInsideSub(int bgColor) {
+            this.bgColor = bgColor;
+        }
     }
 
     public static class InputLagFix {

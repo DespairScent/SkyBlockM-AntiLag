@@ -73,7 +73,9 @@ public class ClothConfigImplementation {
                 builder.entryBuilder().startSubCategory(i18n("config.renderItemInside.item.esPattern"),
                         prepareRenderItemInsideSetup(builder, config -> config.renderItemInside.esPattern)).build(),
                 builder.entryBuilder().startSubCategory(i18n("config.renderItemInside.item.storage"),
-                        prepareRenderItemInsideSetup(builder, config -> config.renderItemInside.storage)).build()
+                        prepareRenderItemInsideSetup(builder, config -> config.renderItemInside.storage)).build(),
+                builder.entryBuilder().startSubCategory(i18n("config.renderItemInside.item.crystalMemory"),
+                        prepareRenderItemInsideSetup(builder, config -> config.renderItemInside.crystalMemory)).build()
         )).build());
 
         base.addEntry(builder.entryBuilder().startBooleanToggle(i18n("config.modules.inputLagFix"), config.modules.inputLagFix)
@@ -109,6 +111,10 @@ public class ClothConfigImplementation {
                 builder.entryBuilder().startBooleanToggle(i18n("config.renderItemInside.drawOriginal"), subGetter.apply(config).drawOriginal)
                         .setDefaultValue(subGetter.apply(Config.DEFAULT).drawOriginal)
                         .setSaveConsumer(value -> subGetter.apply(config).drawOriginal = value)
+                        .build(),
+                builder.entryBuilder().startAlphaColorField(i18n("config.renderItemInside.bgColor"), subGetter.apply(config).bgColor)
+                        .setDefaultValue(subGetter.apply(Config.DEFAULT).bgColor)
+                        .setSaveConsumer(value -> subGetter.apply(config).bgColor = value)
                         .build()
         );
     }
