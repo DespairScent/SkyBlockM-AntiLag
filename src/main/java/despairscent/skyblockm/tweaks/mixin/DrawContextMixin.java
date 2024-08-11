@@ -190,6 +190,10 @@ public class DrawContextMixin {
                 item = Items.PAPER;
                 modelId = 4010;
                 break;
+            case "quantum:enderium":
+                item = Items.PAPER;
+                modelId = 8002;
+                break;
             default:
                 return null;
         }
