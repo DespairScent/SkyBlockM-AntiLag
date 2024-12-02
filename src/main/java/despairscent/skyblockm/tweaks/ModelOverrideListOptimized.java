@@ -7,13 +7,13 @@ import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtElement;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static despairscent.skyblockm.tweaks.ModUtils.config;
+import static despairscent.skyblockm.tweaks.ModUtils.getCustomModelId;
 
 public class ModelOverrideListOptimized extends ModelOverrideList {
 
@@ -29,10 +29,11 @@ public class ModelOverrideListOptimized extends ModelOverrideList {
 
     @Override
     public BakedModel apply(BakedModel model, ItemStack stack, ClientWorld world, LivingEntity entity, int seed) {
-        if (config.modules.fpsOptimize && config.fpsOptimize.modelsCaching &&
-                stack.hasNbt() && stack.getNbt().getType("CustomModelData") == NbtElement.INT_TYPE) {
-            int modelId = stack.getNbt().getInt("CustomModelData");
-            return cache.computeIfAbsent(modelId, k -> this.original.apply(model, stack, world, entity, seed));
+        if (config.modules.fpsOptimize && config.fpsOptimize.modelsCaching) {
+            int modelId = getCustomModelId(stack);
+            if (modelId != -1) {
+                return cache.computeIfAbsent(modelId, k -> this.original.apply(model, stack, world, entity, seed));
+            }
         }
         return this.original.apply(model, stack, world, entity, seed);
     }

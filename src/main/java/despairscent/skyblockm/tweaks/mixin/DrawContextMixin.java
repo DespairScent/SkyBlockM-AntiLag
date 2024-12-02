@@ -1,6 +1,5 @@
 package despairscent.skyblockm.tweaks.mixin;
 
-import despairscent.skyblockm.tweaks.ModUtils;
 import despairscent.skyblockm.tweaks.config.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -11,6 +10,8 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.CustomModelDataComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,27 +45,30 @@ public class DrawContextMixin {
     @Inject(method = "drawItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;IIII)V",
             at = @At("HEAD"))
     private void drawItemInjectHead(LivingEntity entity, World world, ItemStack itemStack, int x, int y, int seed, int z, CallbackInfo ci) {
-        if (!config.modules.renderItemInside || !itemStack.hasNbt()) {
+        if (!config.modules.renderItemInside || 
+                !itemStack.contains(DataComponentTypes.CUSTOM_MODEL_DATA) ||
+                !itemStack.contains(DataComponentTypes.CUSTOM_DATA)) {
             return;
         }
 
-        int modelId = ModUtils.getCustomModelId(itemStack);
+        int modelId = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value();
+        NbtCompound customData = itemStack.get(DataComponentTypes.CUSTOM_DATA).getNbt();
 
         int bgColor;
         if (itemStack.getItem() == Items.PAPER && modelId == 7301) {
-            if (!itemStack.getNbt().contains("ElectricStorage.RecipeResults") ||
+            if (!customData.contains("ElectricStorage.RecipeResults") ||
                     !testRender(config.renderItemInside.esPattern)) {
                 return;
             }
             bgColor = config.renderItemInside.esPattern.bgColor;
         } else if (itemStack.getItem() == Items.BARRIER && modelId >= 1010 && modelId <= 1013) {
-            if (!itemStack.getNbt().contains("ItemStack") ||
+            if (!customData.contains("ItemStack") ||
                     !testRender(config.renderItemInside.storage)) {
                 return;
             }
             bgColor = config.renderItemInside.storage.bgColor;
         } else if (itemStack.getItem() == Items.IRON_HORSE_ARMOR && modelId == 2001) {
-            if (!itemStack.getNbt().contains("StoredItem") ||
+            if (!customData.contains("StoredItem") ||
                     !testRender(config.renderItemInside.crystalMemory)) {
                 return;
             }
@@ -84,37 +88,40 @@ public class DrawContextMixin {
     @Inject(method = "drawItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;IIII)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/item/ItemRenderer;renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V"))
     private void drawItemInject(LivingEntity entity, World world, ItemStack itemStack, int x, int y, int seed, int z, CallbackInfo ci) {
-        if (!config.modules.renderItemInside || !itemStack.hasNbt()) {
+        if (!config.modules.renderItemInside ||
+                !itemStack.contains(DataComponentTypes.CUSTOM_MODEL_DATA) ||
+                !itemStack.contains(DataComponentTypes.CUSTOM_DATA)) {
             return;
         }
 
-        int modelId = ModUtils.getCustomModelId(itemStack);
+        int modelId = itemStack.get(DataComponentTypes.CUSTOM_MODEL_DATA).value();
+        NbtCompound customData = itemStack.get(DataComponentTypes.CUSTOM_DATA).getNbt();
 
         ItemStack itemInside;
         boolean drawOriginal;
         if (itemStack.getItem() == Items.PAPER && modelId == 7301) {
-            if (!itemStack.getNbt().contains("ElectricStorage.RecipeResults") ||
+            if (!customData.contains("ElectricStorage.RecipeResults") ||
                     !testRender(config.renderItemInside.esPattern)) {
                 return;
             }
             drawOriginal = config.renderItemInside.esPattern.drawOriginal;
-            itemInside = ItemStack.fromNbt(
-                    itemStack.getNbt().getList("ElectricStorage.RecipeResults", NbtElement.COMPOUND_TYPE)
+            itemInside = itemStackFromNbtPre1_20_5(
+                    customData.getList("ElectricStorage.RecipeResults", NbtElement.COMPOUND_TYPE)
                             .getCompound(0));
         } else if (itemStack.getItem() == Items.BARRIER && modelId >= 1010 && modelId <= 1013) {
-            if (!itemStack.getNbt().contains("ItemStack") ||
+            if (!customData.contains("ItemStack") ||
                     !testRender(config.renderItemInside.storage)) {
                 return;
             }
             drawOriginal = config.renderItemInside.storage.drawOriginal;
-            itemInside = ItemStack.fromNbt(itemStack.getNbt().getCompound("ItemStack"));
+            itemInside = itemStackFromNbtPre1_20_5(customData.getCompound("ItemStack"));
         } else if (itemStack.getItem() == Items.IRON_HORSE_ARMOR && modelId == 2001) {
-            if (!itemStack.getNbt().contains("StoredItem") ||
+            if (!customData.contains("StoredItem") ||
                     !testRender(config.renderItemInside.crystalMemory)) {
                 return;
             }
             drawOriginal = config.renderItemInside.crystalMemory.drawOriginal;
-            itemInside = itemStackFromIdentifier(itemStack.getNbt().getString("StoredItem"));
+            itemInside = itemStackFromIdentifier(customData.getString("StoredItem"));
             if (itemInside == null) {
                 return;
             }
@@ -197,10 +204,25 @@ public class DrawContextMixin {
             default:
                 return null;
         }
-        NbtCompound nbt = new NbtCompound();
-        nbt.putInt("CustomModelData", modelId);
         ItemStack stack = new ItemStack(item);
-        stack.setNbt(nbt);
+        stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(modelId));
+        return stack;
+    }
+
+    @Unique
+    private static ItemStack itemStackFromNbtPre1_20_5(NbtCompound stackNbt) {
+        ItemStack stack = ItemStack.EMPTY;
+        try {
+            Item item = Registries.ITEM.get(Identifier.tryParse(stackNbt.getString("id")));
+            stack = new ItemStack(item);
+            if (stackNbt.contains("tag", NbtElement.COMPOUND_TYPE)) {
+                NbtCompound nbt = stackNbt.getCompound("tag");
+                if (nbt.contains("CustomModelData", NbtElement.INT_TYPE)) {
+                    stack.set(DataComponentTypes.CUSTOM_MODEL_DATA, new CustomModelDataComponent(nbt.getInt("CustomModelData")));
+                }
+            }
+        } catch (Exception e) {
+        }
         return stack;
     }
 
