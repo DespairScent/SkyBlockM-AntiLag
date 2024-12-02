@@ -31,8 +31,6 @@ public class Config {
 
     public static class FpsOptimize {
         public boolean modelsCaching = true;
-        public boolean noArmorStandCramming = true;
-        public boolean noSpectatorArmorStands = true;
     }
 
     public static class MoreTooltipInfo {

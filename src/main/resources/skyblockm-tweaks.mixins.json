@@ -6,9 +6,7 @@
   "mixins": [],
   "client": [
     "AnvilScreenMixin",
-    "ArmorStandMixin",
     "DrawContextMixin",
-    "EntityMixin",
     "GameRendererMixin",
     "InGameHudMixin",
     "ItemRenderOptimizeMixin",
