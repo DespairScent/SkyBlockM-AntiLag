@@ -14,8 +14,6 @@
   "skyblockm-tweaks.config.modules.inputLagFix": "Исправление лагов ввода текста в кастомных интерфейсах",
 
   "skyblockm-tweaks.config.fpsOptimize.modelsCaching": "Кеширование моделей кастомных предметов/блоков",
-  "skyblockm-tweaks.config.fpsOptimize.noArmorStandCramming": "Отключение проверок «тесноты» для стоек",
-  "skyblockm-tweaks.config.fpsOptimize.noSpectatorArmorStands": "[ADMIN] Скрытие стоек в режиме наблюдения",
 
   "skyblockm-tweaks.config.moreTooltipInfo.storage": "Хранилище",
   "skyblockm-tweaks.config.moreTooltipInfo.storage.tooltip": "Показ предмета внутри",

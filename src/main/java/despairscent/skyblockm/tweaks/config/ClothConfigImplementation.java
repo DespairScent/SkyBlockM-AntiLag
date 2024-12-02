@@ -29,14 +29,6 @@ public class ClothConfigImplementation {
                 builder.entryBuilder().startBooleanToggle(i18n("config.fpsOptimize.modelsCaching"), config.fpsOptimize.modelsCaching)
                         .setDefaultValue(Config.DEFAULT.fpsOptimize.modelsCaching)
                         .setSaveConsumer(value -> config.fpsOptimize.modelsCaching = value)
-                        .build(),
-                builder.entryBuilder().startBooleanToggle(i18n("config.fpsOptimize.noArmorStandCramming"), config.fpsOptimize.noArmorStandCramming)
-                        .setDefaultValue(Config.DEFAULT.fpsOptimize.noArmorStandCramming)
-                        .setSaveConsumer(value -> config.fpsOptimize.noArmorStandCramming = value)
-                        .build(),
-                builder.entryBuilder().startBooleanToggle(i18n("config.fpsOptimize.noSpectatorArmorStands"), config.fpsOptimize.noSpectatorArmorStands)
-                        .setDefaultValue(Config.DEFAULT.fpsOptimize.noSpectatorArmorStands)
-                        .setSaveConsumer(value -> config.fpsOptimize.noSpectatorArmorStands = value)
                         .build()
         )).build());
 
