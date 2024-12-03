@@ -1,5 +1,6 @@
 package despairscent.skyblockm.tweaks;
 
+import com.google.common.collect.ImmutableMap;
 import despairscent.skyblockm.tweaks.config.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -13,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 public class ModUtils {
 
@@ -42,6 +45,27 @@ public class ModUtils {
             return valueHolder.value();
         }
         return -1;
+    }
+
+    public static String getLiteralNested(Text text, int... path) {
+        for (int k : path) {
+            if (k >= text.getSiblings().size()) {
+                return null;
+            }
+            text = text.getSiblings().get(k);
+        }
+        if (text.getContent() instanceof PlainTextContent content) {
+            return content.string();
+        }
+        return null;
+    }
+
+    public static <K, V> Map<K, V> generateConvertMap(V[] values, Function<V, K> keyGetter) {
+        var builder = ImmutableMap.<K, V>builder();
+        for (V value : values) {
+            builder.put(keyGetter.apply(value), value);
+        }
+        return builder.build();
     }
 
 }

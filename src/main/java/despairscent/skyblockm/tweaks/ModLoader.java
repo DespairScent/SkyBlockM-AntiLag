@@ -1,6 +1,7 @@
 package despairscent.skyblockm.tweaks;
 
 import despairscent.skyblockm.tweaks.config.Config;
+import despairscent.skyblockm.tweaks.modules.compactgenome.CompactGenomeModule;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -29,6 +30,8 @@ public class ModLoader implements ClientModInitializer {
                 doSwitch();
             }
         });
+
+        CompactGenomeModule.init();
     }
 
     private static void doSwitch() {

@@ -12,6 +12,8 @@
   "skyblockm-tweaks.config.modules.renderItemInside": "Рендер внутреннего предмета",
   "skyblockm-tweaks.config.modules.renderItemInside.tooltip": "Например, показ цели ES шаблона при зажатом Shift (по умолчанию)",
   "skyblockm-tweaks.config.modules.inputLagFix": "Исправление лагов ввода текста в кастомных интерфейсах",
+  "skyblockm-tweaks.config.modules.compactGenome": "Компактный показ генов пчел",
+  "skyblockm-tweaks.config.modules.compactGenome.tooltip": "Только для опытных пчеловодов, большая часть подробностей будет скрыта",
 
   "skyblockm-tweaks.config.fpsOptimize.modelsCaching": "Кеширование моделей кастомных предметов/блоков",
 

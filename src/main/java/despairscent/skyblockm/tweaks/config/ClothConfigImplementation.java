@@ -85,6 +85,12 @@ public class ClothConfigImplementation {
                         .build()
         )).build());
 
+        base.addEntry(builder.entryBuilder().startBooleanToggle(i18n("config.modules.compactGenome"), config.modules.compactGenome)
+                .setTooltip(i18n("config.modules.compactGenome.tooltip"))
+                .setDefaultValue(Config.DEFAULT.modules.compactGenome)
+                .setSaveConsumer(value -> config.modules.compactGenome = value)
+                .build());
+
         builder.setSavingRunnable(() -> config.save());
 
         return builder.build();
