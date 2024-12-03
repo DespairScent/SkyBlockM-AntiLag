@@ -27,6 +27,7 @@ public class Config {
         public boolean moreTooltipInfo = true;
         public boolean renderItemInside = true;
         public boolean inputLagFix = true;
+        public boolean compactGenome = false;
     }
 
     public static class FpsOptimize {
