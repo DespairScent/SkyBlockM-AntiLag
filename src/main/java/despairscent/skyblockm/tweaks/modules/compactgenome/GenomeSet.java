@@ -3,27 +3,27 @@ package despairscent.skyblockm.tweaks.modules.compactgenome;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GenomeSet {
+class GenomeSet {
 
     private final Map<GenomeType<?>, GenomePair<?>> map = new HashMap<>();
 
-    public boolean contains(GenomeType<?> type) {
+    boolean contains(GenomeType<?> type) {
         return this.map.containsKey(type);
     }
 
-    public <V extends GenomeValue, T extends GenomeType<V>> GenomePair<V> get(T type) {
-        return (GenomePair<V>) this.map.get(type);
+    <G, T extends GenomeType<G>> GenomePair<G> get(T type) {
+        return (GenomePair<G>) this.map.get(type);
     }
 
-    public <V extends GenomeValue, T extends GenomeType<V>> void put(T type, V first, GenomeVariant firstVariant, V second, GenomeVariant secondVariant) {
-        this.map.put(type, new GenomePair<>(first, firstVariant, second, secondVariant));
+    <G, T extends GenomeType<G>> void put(T type, G first, GenomeVariant firstVariant, G second, GenomeVariant secondVariant) {
+        this.put(type, new GenomePair<>(first, firstVariant, second, secondVariant));
     }
 
-    public <V extends GenomeValue, T extends GenomeType<V>> void put(T type, GenomePair<V> pair) {
+    <G, T extends GenomeType<G>> void put(T type, GenomePair<G> pair) {
         this.map.put(type, pair);
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return this.map.isEmpty();
     }
 

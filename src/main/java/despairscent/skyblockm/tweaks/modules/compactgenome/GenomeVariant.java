@@ -1,26 +1,17 @@
 package despairscent.skyblockm.tweaks.modules.compactgenome;
 
-import despairscent.skyblockm.tweaks.ModUtils;
+enum GenomeVariant {
+    DOMINANT,
+    RECESSIVE;
 
-import java.util.Map;
-
-public enum GenomeVariant {
-    DOMINANT("Доминантный"),
-    RECESSIVE("Рецессивный");
-
-    private static final Map<String, GenomeVariant> NAME_TO_VARIANT_MAP = ModUtils.generateConvertMap(values(), GenomeVariant::getName);
-
-    private final String name;
-
-    GenomeVariant(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public static GenomeVariant parse(String name) {
-        return NAME_TO_VARIANT_MAP.get(name);
+    static GenomeVariant parse(String name) {
+        if (name == null) {
+            return null;
+        }
+        return switch (name) {
+            case "Доминантный" -> DOMINANT;
+            case "Рецессивный" -> RECESSIVE;
+            default -> null;
+        };
     }
 }
