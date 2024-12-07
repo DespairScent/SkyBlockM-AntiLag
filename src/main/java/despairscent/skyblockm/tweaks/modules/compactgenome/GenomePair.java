@@ -1,7 +1,7 @@
 
 package despairscent.skyblockm.tweaks.modules.compactgenome;
 
-public record GenomePair<T extends GenomeValue>(
+record GenomePair<T>(
         T first, GenomeVariant firstVariant,
         T second, GenomeVariant secondVariant
 ) { }
