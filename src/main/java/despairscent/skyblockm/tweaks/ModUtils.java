@@ -39,7 +39,7 @@ public class ModUtils {
     }
 
     public static int getCustomModelId(ItemStack itemStack) {
-        if (itemStack.hasNbt() && itemStack.getNbt().getType("CustomModelData") == NbtElement.INT_TYPE) {
+        if (itemStack.hasNbt() && itemStack.getNbt().contains("CustomModelData", NbtElement.NUMBER_TYPE)) {
             return itemStack.getNbt().getInt("CustomModelData");
         }
         return -1;
