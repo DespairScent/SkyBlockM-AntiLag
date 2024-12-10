@@ -23,6 +23,10 @@ dependencies {
 	modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
 }
 
+loom {
+	accessWidenerPath.set(file("src/main/resources/skyblockm-tweaks.accesswidener"))
+}
+
 remapJar {
 	archiveFileName = "${mod_id}-${mod_version}+mc${minecraft_version}.jar"
 }
