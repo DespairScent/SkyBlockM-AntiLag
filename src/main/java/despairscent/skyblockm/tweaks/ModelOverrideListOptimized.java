@@ -30,9 +30,9 @@ public class ModelOverrideListOptimized extends ModelOverrideList {
     @Override
     public BakedModel apply(BakedModel model, ItemStack stack, ClientWorld world, LivingEntity entity, int seed) {
         if (config.modules.fpsOptimize && config.fpsOptimize.modelsCaching &&
-                stack.hasNbt() && stack.getNbt().getType("CustomModelData") == NbtElement.INT_TYPE) {
+                stack.hasNbt() && stack.getNbt().contains("CustomModelData", NbtElement.NUMBER_TYPE)) {
             int modelId = stack.getNbt().getInt("CustomModelData");
-            return cache.computeIfAbsent(modelId, k -> this.original.apply(model, stack, world, entity, seed));
+            return this.cache.computeIfAbsent(modelId, k -> this.original.apply(model, stack, world, entity, seed));
         }
         return this.original.apply(model, stack, world, entity, seed);
     }
