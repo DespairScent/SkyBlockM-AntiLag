@@ -23,9 +23,9 @@
       "despairscent.skyblockm.tweaks.config.ModMenuImplementation"
     ]
   },
-  "mixins": [
-    "skyblockm-tweaks.mixins.json"
-  ],
+
+  "accessWidener": "skyblockm-tweaks.accesswidener",
+  "mixins": ["skyblockm-tweaks.mixins.json"],
 
   "depends": {
     "fabricloader": ">=0.12.0",

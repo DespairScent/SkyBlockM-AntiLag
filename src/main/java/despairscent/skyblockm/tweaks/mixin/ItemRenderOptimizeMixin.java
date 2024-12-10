@@ -1,6 +1,6 @@
 package despairscent.skyblockm.tweaks.mixin;
 
-import despairscent.skyblockm.tweaks.ModelOverrideListOptimized;
+import despairscent.skyblockm.tweaks.modules.modelscaching.CustomModelOverrideList;
 import net.minecraft.client.render.model.Baker;
 import net.minecraft.client.render.model.json.JsonUnbakedModel;
 import net.minecraft.client.render.model.json.ModelOverrideList;
@@ -19,7 +19,10 @@ public class ItemRenderOptimizeMixin {
     )
     private void compileOverridesInject(Baker baker, JsonUnbakedModel parent, CallbackInfoReturnable<ModelOverrideList> cir) {
         if (cir.getReturnValue() != ModelOverrideList.EMPTY) {
-            cir.setReturnValue(new ModelOverrideListOptimized(baker, parent, cir.getReturnValue()));
+            var optimized = new CustomModelOverrideList(baker, parent, cir.getReturnValue());
+            if (optimized.hasCache()) {
+                cir.setReturnValue(optimized);
+            }
         }
     }
 
